@@ -303,7 +303,7 @@
 
 };
 
-&mipi_csi_1 {
+&mipi_csi {
 	#address-cells = <1>;
 	#size-cells = <0>;
 	status = "okay";
@@ -322,7 +322,7 @@
 	};
 };
 
-&csi1_bridge {
+&csi {
     fsl,mipi-mode;
     status = "okay";
 
