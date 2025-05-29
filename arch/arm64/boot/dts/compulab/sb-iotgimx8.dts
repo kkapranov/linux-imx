@@ -105,31 +105,18 @@
 		enable-active-high;
 	};
 
-	regulator-mpcie2_rst {
-		compatible = "regulator-fixed";
-		regulator-name = "mpcie2_rst";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-		regulator-always-on;
-		enable-active-high;
-	};
-
-	regulator-mpcie2lora_dis {
-		compatible = "regulator-fixed";
-		regulator-name = "mpcie2lora_dis";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-		gpio = <&gpio3 21 GPIO_ACTIVE_HIGH>;
-		regulator-always-on;
-		enable-active-high;
-	};
-
 	pcie0_refclk: pcie0-refclk {
 		compatible = "fixed-clock";
 		#clock-cells = <0>;
 		clock-frequency = <100000000>;
 	};
+};
+&gpio3 {
+	gpio-line-names = "", "", "", "", "", "", "", "",
+	"", "", "", "", "", "", "", "",
+	"", "", "", "", "", "mpcie2_lora_dsbl", "mpcie2_rst", "",
+	"", "", "", "", "", "", "", "";
+	status = "okay";
 };
 
 &uart1 {
