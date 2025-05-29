@@ -16,6 +16,7 @@
 
 #include "ucm-imx8m-mini.dtsi"
 #include <dt-bindings/phy/phy-imx8-pcie.h>
+#include <dt-bindings/leds/common.h>
 
 / {
 	model = "CompuLab SB-IOTGIMX8 board";
@@ -110,6 +111,32 @@
 		#clock-cells = <0>;
 		clock-frequency = <100000000>;
 	};
+
+	user-leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_user_leds>;
+		user-led-green {
+			label = "UserLED_Green";
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio3 25 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+		user-led-yellow {
+			label = "UserLED_Yellow";
+			color = <LED_COLOR_ID_YELLOW>;
+			gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+		// power-led-yelow is hardwired
+		power-led-green {
+			label = "PowerLED_Green";
+			color = <LED_COLOR_ID_GREEN>;
+			gpios = <&gpio3 23 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+	};
+
 };
 &gpio3 {
 	gpio-line-names = "", "", "", "", "", "", "", "",
@@ -239,6 +266,14 @@
 				/* mPCIe2 */
 				MX8MM_IOMUXC_SAI5_RXD0_GPIO3_IO21	0x140 /* mPCIe2_LORA_DISABLE */
 				MX8MM_IOMUXC_SAI5_RXD1_GPIO3_IO22	0x140 /* mPCIe2_PERSTn */
+			>;
+		};
+
+		pinctrl_user_leds: userledsgrp {
+			fsl,pins = <
+				MX8MM_IOMUXC_SAI5_MCLK_GPIO3_IO25	0x19
+				MX8MM_IOMUXC_SAI5_RXFS_GPIO3_IO19	0x19
+				MX8MM_IOMUXC_SAI5_RXD2_GPIO3_IO23	0x19
 			>;
 		};
 
